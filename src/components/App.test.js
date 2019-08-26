@@ -30,6 +30,11 @@ describe('App', () =>{
         it('add a new gift to the rendered list', () =>{
             expect(app.find('.gift-list').children().length).toEqual(1);
         });
+
+        it('add a new Gift component', () =>{
+            expect(app.find('Gift').exists()).toBe(true);
+        })
+
     });
 });
 
