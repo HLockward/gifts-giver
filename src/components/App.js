@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import Gift from './Gift';
+import { getMaxId } from '../helper/index';
 
 class App extends Component{
     constructor(){
@@ -11,8 +12,15 @@ class App extends Component{
     }
 
     addGift = () => {  
-        let maxId = (this.state.gifts.length) ? this.state.gifts.reduce((max, id) => (id > max) ? id : max,0) : 0;
-        this.setState({gifts: [...this.state.gifts, {id:++maxId}]});
+        let maxId = getMaxId(this.state.gifts);
+        const id = ++maxId;
+        const gifts = [...this.state.gifts, {id}];
+        this.setState({gifts});
+    }
+
+    removeGift = id => {
+        const gifts = this.state.gifts.filter(gift => gift.id !== id);
+        this.setState({gifts});
     }
 
     render(){
@@ -22,7 +30,11 @@ class App extends Component{
                 <div className='gift-list'>
                     {this.state.gifts.map(gift => {
                         return (
-                            <Gift key={gift.id} />
+                            <Gift 
+                                key={gift.id} 
+                                gift={gift}
+                                removeGift={this.removeGift}
+                            />
                         );
                     })}
                 </div>
