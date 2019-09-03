@@ -27,7 +27,7 @@ class Gift extends Component {
                     </FormGroup>  
                 </Form>
                 <Button 
-                    className='btn-remove' 
+                    className='btn-remove btn-danger' 
                     onClick={() => this.props.removeGift(this.props.gift.id)}
                 >
                     Remove Gift

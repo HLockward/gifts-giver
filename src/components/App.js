@@ -25,7 +25,7 @@ class App extends Component{
 
     render(){
         return(
-            <div>
+            <div className='gift'>
                 <h1>Gift Giver</h1>
                 <div className='gift-list'>
                     {this.state.gifts.map(gift => {
